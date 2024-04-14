@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://s3sp2s4pmk01"]
+
+[ext_resource type="Texture2D" uid="uid://vo383yww1qaf" path="res://Sprites/playerShip1_orange.png" id="1_637a6"]
+[ext_resource type="Script" path="res://Scene/pemain.gd" id="1_gn5qx"]
+
+[node name="Pemain" type="CharacterBody2D"]
+collision_mask = 10
+script = ExtResource("1_gn5qx")
+
+[node name="PemainSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_637a6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, -39, 7, -40, 11, -15, 37, 3, 47, -6, 47, 27, 40, 21, 13, 26, 7, 37, -8, 37, -14, 27, -40, 21, -45, 25, -48, -7, -37, 3, -12, -12)
+
+[node name="LaserPos" type="Marker2D" parent="."]
+position = Vector2(0, -55)
+
+[node name="LaserCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="LaserCooldown" to="." method="_on_laser_cooldown_timeout"]
